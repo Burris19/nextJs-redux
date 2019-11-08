@@ -3,9 +3,17 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import promiseMiddleware from 'redux-promise'
 import Reducers from './reducers'
 
-export function initializeStore() {
+const exampleInitialState = {
+    users: [{
+        name: 'Steve',
+        lastname: 'Jones'
+    }]
+}
+
+export function initializeStore(initialState = exampleInitialState) {
     return createStore(
         Reducers,
+        initialState,
         composeWithDevTools(applyMiddleware(promiseMiddleware))
     )
 }
